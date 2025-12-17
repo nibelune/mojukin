@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Le Grimoire du Planeswalker disparu</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="block has-text-centered mb-6">
+          <div class="header-decoration">
+            <h1 class="title is-1">Le Dernier Grimoire de Mojukin</h1>
+          </div>
+          <p class="subtitle is-5">
+            Le Planeswalker Mojukin a shuffle son deck une dernière fois.
+            Laissez ici vos sorts, vos blagues, vos souvenirs critiques ou vos
+            topdecks improbables.
+          </p>
+        </div>
+
+        <div class="grimoire-box mb-6">
+          <form method="post">
+            <div class="field">
+              <label class="label" for="author">Nom du Planeswalker</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  name="author"
+                  id="author"
+                  placeholder="Gandalf le gris"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="content">Ton message</label>
+              <div class="control">
+                <textarea
+                  class="textarea"
+                  name="content"
+                  id="content"
+                  rows="5"
+                  placeholder="Partage tes souvenirs du Planeswalker..."
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <button class="button is-medium mtg-button" type="submit">
+                  Inscrire dans le Grimoire
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <% if(locals.messages?.length) {%>
+        <div class="block">
+          <h2 class="title is-4 section-title">
+            Archives du Grimoire (<%= messages.length %>)
+          </h2>
+
+          <% messages.forEach(message => { %>
+          <div class="message-box">
+            <div class="message-content">
+              <p><%= message.content %></p>
+            </div>
+            <div class="message-author">
+              — <%= message.author %>
+              <span class="message-date"
+                >• <%= new Date(message.created_at).toLocaleDateString('fr-FR',
+                { year: 'numeric', month: 'long', day: 'numeric' }) %></span
+              >
+            </div>
+          </div>
+          <% }) %>
+        </div>
+        <% } %>
+      </div>
+    </section>
+  </body>
+</html>
