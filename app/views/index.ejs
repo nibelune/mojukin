@@ -83,7 +83,9 @@
               — <%= message.author %>
               <span class="message-date"
                 >• <%= new Date(message.created_at).toLocaleDateString('fr-FR',
-                { year: 'numeric', month: 'long', day: 'numeric' }) %></span
+                { year: 'numeric', month: 'long', day: 'numeric' }) %> à <%= new
+                Date(message.created_at).toLocaleTimeString('fr-FR', { hour:
+                '2-digit', minute: '2-digit' }) %></span
               >
             </div>
           </div>
